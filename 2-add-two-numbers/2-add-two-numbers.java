@@ -30,7 +30,7 @@ class Solution {
           
             ListNode res = new ListNode(sum%10);
             temp.next = res;
-            temp = temp.next;
+            temp = res;
         }
         return dummy.next;
     }

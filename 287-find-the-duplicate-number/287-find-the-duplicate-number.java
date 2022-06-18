@@ -1,3 +1,4 @@
+
 class Solution {
     public int findDuplicate(int[] nums) {
         int fast = nums[0];

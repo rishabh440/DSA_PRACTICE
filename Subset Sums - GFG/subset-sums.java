@@ -32,20 +32,21 @@ class GFG
 
 //User function Template for Java//User function Template for Java
 class Solution{
-    void func( int indx, int sum , ArrayList<Integer> arr , int N , ArrayList<Integer> sumsubsets){
-        if(indx == N){
-            sumsubsets.add(sum);
-            return ;
-            
-        }
-        func(indx+1 , sum+ arr.get(indx) , arr , N , sumsubsets);
-        func(indx+1 , sum , arr , N , sumsubsets);
-    }
     ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
-        // code here
-        ArrayList<Integer> sumsubsets = new ArrayList<>();
-        func(0,0,arr,N,sumsubsets);
-        Collections.sort(sumsubsets);
-        return sumsubsets;
+     ArrayList<Integer> ans = new ArrayList<>();
+     
+       func(0 , 0 , N , arr , ans );
+       Collections.sort(ans);
+       return ans ;
+    }
+   void  func(int indx , int sum ,int n , ArrayList<Integer> arr , ArrayList<Integer>  ans){
+        if(indx==n){
+            ans.add(sum);
+            return;
+        }
+      
+        func(indx+1 , sum + arr.get(indx) , n , arr , ans );
+        func(indx+1 , sum   , n , arr , ans );
+         
     }
 }

@@ -8,10 +8,11 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+
+    class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if(lists==null || lists.length==0)return null;
-      ArrayList<Integer> minheap = new ArrayList<>();
+       PriorityQueue<Integer>minheap= new PriorityQueue<>();
       ListNode head = new ListNode(0);
         ListNode temp = head;
       for(ListNode l:lists) {
@@ -21,13 +22,12 @@ class Solution {
           }
       }
        
-      Collections.sort(minheap)     ; 
- for(int val : minheap){
-           
-            temp.next= new ListNode(val);
-            temp= temp.next;
-    
             
+while(minheap.size()!=0){
+     int ans = minheap.remove();
+            temp.next= new ListNode(ans);
+            temp= temp.next;
+       
         }
         return head.next;
     }

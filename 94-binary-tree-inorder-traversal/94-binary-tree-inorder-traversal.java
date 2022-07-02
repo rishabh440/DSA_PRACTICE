@@ -15,15 +15,30 @@
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer> ans = new ArrayList<>();
-        ioder(ans , root);
+        TreeNode node = root;
+        List<Integer> ans = new ArrayList<>();
+        while(node!=null){
+            if(node.left==null){
+                ans.add(node.val);
+                node = node.right;
+            }
+            else{
+                TreeNode perv = node.left;
+                while(perv.right!=null && perv.right!=node){
+                    perv= perv.right;
+                }
+                if(perv.right==null){
+                    perv.right= node;
+                    node= node.left;
+                }
+                else{
+                    perv.right = null;
+                    ans.add(node.val);
+                    node = node.right;
+                }
+            }
+        }
         return ans;
-    }
-    void ioder(ArrayList<Integer> ans ,TreeNode node){
-        if(node==null) return ;
         
-        ioder(ans , node.left);
-        ans.add(node.val);
-        ioder(ans ,node.right);
     }
 }

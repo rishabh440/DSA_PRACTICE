@@ -6,11 +6,13 @@ class Solution {
             hashSet.add(num);
         }
         int ls =0;
+        int cn = 0;
+        int cs = 0;
         
         for(int num: nums){
             if(!hashSet.contains(num-1)){
-              int   cn = num;
-               int  cs=1;
+               cn = num;
+                 cs=1;
            
             while(hashSet.contains(cn + 1)){
               cs++;

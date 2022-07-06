@@ -14,17 +14,14 @@ class Solution {
         start.next = head;
         ListNode fast = start;
         ListNode slow = start;
-        
-        for(int i = 0 ; i<n; i++)
-            fast = fast.next;    
-        
-        
+        for(int i =0 ; i<n ; i++){
+            fast = fast.next;
+        }
         while(fast.next!=null){
             fast= fast.next;
-            slow=slow.next;
+            slow= slow.next;
         }
-        
         slow.next= slow.next.next;
-        return start.next;
+        return  start.next;
     }
 }

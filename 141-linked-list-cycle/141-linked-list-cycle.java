@@ -17,7 +17,11 @@ public class Solution {
         while(fast.next!=null && fast.next.next!=null){
             fast = fast.next.next;
             slow = slow.next;
-            if(slow==fast)return true;
+            if(slow==fast){
+                System.out.print(slow.val);
+                slow.next= null;
+                return true;
+        }
         }
         return false;
     }

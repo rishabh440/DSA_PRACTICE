@@ -1,28 +1,34 @@
 class Solution {
     public List<String> wordSubsets(String[] A, String[] B) {
-        int[] bmax = count("");
-        for (String b: B) {
-            int[] bCount = count(b);
-            for (int i = 0; i < 26; ++i)
-                bmax[i] = Math.max(bmax[i], bCount[i]);
+       List<String> result=new ArrayList<>();
+        int[] target=new int[26];
+        
+        for(String word:B){
+            int[] temp=new int[26];
+            for(char ch:word.toCharArray()){
+                temp[ch-'a']++;
+                target[ch-'a']=Math.max(target[ch-'a'],temp[ch-'a']);
+            }
         }
-
-        List<String> ans = new ArrayList();
-        search: for (String a: A) {
-            int[] aCount = count(a);
-            for (int i = 0; i < 26; ++i)
-                if (aCount[i] < bmax[i])
-                    continue search;
-            ans.add(a);
+        
+        for(String word:A){
+            int[] source=new int[26];
+            for(char ch:word.toCharArray()){
+                source[ch-'a']++;
+            }
+            
+            if(subset(source,target)){
+                result.add(word);
+            }
         }
-
-        return ans;
+        
+        return result;
     }
-
-    public int[] count(String S) {
-        int[] ans = new int[26];
-        for (char c: S.toCharArray())
-            ans[c - 'a']++;
-        return ans;
+    
+    private boolean subset(int[] parent,int[] child){
+        for(int i=0;i<26;i++){
+            if(parent[i]<child[i]) return false;
+        }
+        return true;
     }
 }

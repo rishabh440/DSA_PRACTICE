@@ -1,6 +1,6 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-     int[][] dp = new int[101][101] ;
+     int[][] dp = new int[n*m][n*m] ;
       for (int[] row : dp)
             Arrays.fill(row, -1);
       return  func(m , n , 0 , 0 , dp );

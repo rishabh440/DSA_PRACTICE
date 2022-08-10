@@ -1,34 +1,37 @@
 class Solution {
     public void rotate(int[] nums, int k) {
-        
-      int j=0;
-       int n = nums.length;
-         if(k>n){
-                k=k%n;
-            }
-          int[] ans = new int[n];
-        if(k==0 || n/k==0){
-             System.out.println(k);
+     if(nums.length <= 1){
+            return;
         }
-        else{
-           
-             System.out.println(k);
-            for(int i=n-k; i<n; i++){
-                ans[j]= nums[i];
-                j++;
-            }
-            for(int i=0; i<n; i++){
-                System.out.println(ans[i]);
-            }
-            
-            for(int i=0; i<n-k; i++){
-                ans[j]=nums[i];
-                j++;
-            }
-            for(int i=0; i<n; i++){
-                nums[i]= ans[i];
-            }
+        //step each time to move
+        int step = k % nums.length;
+        int[] tmp = new int[step];
+        for(int i = 0; i < step; i++){
+            tmp[i] = nums[nums.length - step + i];
+        }
+        for(int i = nums.length - step - 1; i >= 0; i--){
+            nums[i + step] = nums[i];
+        }
+        for(int i = 0; i < step; i++){
+            nums[i] = tmp[i];
         }
         
     }
+    
 }
+// public void rotate(int[] nums, int k) {
+//     k %= nums.length;
+//     reverse(nums, 0, nums.length - 1);
+//     reverse(nums, 0, k - 1);
+//     reverse(nums, k, nums.length - 1);
+// }
+
+// public void reverse(int[] nums, int start, int end) {
+//     while (start < end) {
+//         int temp = nums[start];
+//         nums[start] = nums[end];
+//         nums[end] = temp;
+//         start++;
+//         end--;
+//     }
+// }

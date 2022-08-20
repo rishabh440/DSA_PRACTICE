@@ -18,8 +18,9 @@ public class Solution {
             fast = fast.next.next;
             slow = slow.next;
             if(slow==fast){
-                System.out.print(slow.val);
+              
                 slow.next= null;
+               
                 return true;
         }
         }

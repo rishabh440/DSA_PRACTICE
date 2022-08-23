@@ -11,19 +11,19 @@
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
         if(head==null)return head;
-        ListNode cur = head;
-        int count =1;
-        while(cur.next!=null){
-            cur= cur.next;
-            count++;
+        ListNode node = head;
+        int c=1;
+        while(node.next!=null){
+            node= node.next;
+            c++;
         }
-        cur.next = head;
-        k= k % count;
-        k= count - k;
-        while(k-- > 0)cur= cur.next;
+        node.next=head;
+        k= k%c;
+        k= c-k;
+        while(k-->0)node=node.next;
+        head= node.next;
+        node.next=null;
+        return head;
         
-        head= cur.next;
-        cur.next= null;
-            return head;
     }
 }

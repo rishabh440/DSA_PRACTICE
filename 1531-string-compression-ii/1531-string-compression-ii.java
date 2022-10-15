@@ -4,7 +4,7 @@ class Solution {
         List<int[]> count = new ArrayList<>();
         char lc = ' ';
         int cn = 0;
-		// build a list of consecutive chars count, aaabbcc -> {{a, 3}, {b, 2}, {c, 2}}
+		
         for (char c : s.toCharArray()) {
             if (lc != c) {
                 if (cn != 0) count.add(new int[] { lc-'a', cn });
@@ -19,11 +19,9 @@ class Solution {
         return f(count, 0, 0, k);
     }
     
-	// a is a number of additional consecutive chars to be added, for cases like `aabbaa` and we delete two `b`
-	// i is the counter, we go through all `count` list elements until we reach the end
-	// k is the remaining chars we can delete
+	
     int f(List<int[]> count, int a, int i, int k) {
-        if (i == count.size()) return 0; // we reached the end
+        if (i == count.size()) return 0;
         if (memo[i][k][a] != null) return memo[i][k][a]; // we hit the cache
         int[] curr = count.get(i);
         int c = curr[1] + a;
@@ -39,13 +37,7 @@ class Solution {
 		
 		// now let's handle the case like `aabbaa` -> `aaaa`
         int res = k;
-		// what we do is go through all the next consecutive chars and try to remove them entirely
-		// in case we encounter the same character as we have now, we just pass the current count as `a` parameter
-		// e.g. `aaabbaa` -> `{{a,3},{b,2},{a,2}}
-		// we remove {b,2} and call f(count, 3, j, res),
-		// where res will be (k-charsWeRemovedInBetween)
-		// and 3 is the count of `a` on the beginning which is passed to sum up with the two `a` we have in the end
-		// which results in (2+3)=5 consecutive `a` chars, what we have when we remove both `b`
+	
         for (int j = i + 1; j < count.size() && res >= 0; j++) {
             int[] next = count.get(j);
             if (next[0] == curr[0]) {
